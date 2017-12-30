@@ -100,6 +100,30 @@ function cmd_update() {
   run ${crypto}  
 }
 
+function cmd_run() {
+  crypto=$1
+  source ./${crypto}_qtbuild/${crypto}.sh
+  
+  ${crypto}_run
+
+  read -p " Press [Enter] To Exit ..."
+
+  run ${crypto}
+}
+
+function cmd_stop() {
+  crypto=$1
+  source ./${crypto}_qtbuild/${crypto}.sh
+  
+  ${crypto}_stop
+
+  read -p " Press [Enter] To Exit ..."
+
+  run ${crypto}
+}
+
+
+
 function cmd_edit() {
   crypto=$1
   source ./${crypto}_qtbuild/${crypto}.sh
@@ -179,11 +203,11 @@ function show_runcmd() {
   echo "                        ---------------------"  
   echo
   echo "                        1) Install ${crypto}"
-  echo "                        2) Edit Conf"
+  echo "                        2) Edit Conf ${crypto}"
   echo "                        3) Start ${crypto}"  
   echo "                        4) Kill ${crypto}"  
   echo "                        5) Update ${crypto}"
-  echo "                        0) Exit"
+  echo "                        0) Return To Menu"
   tput sgr0
 }
 
@@ -195,6 +219,9 @@ function read_runcmd() {
         0) two;;
         1) cmd_install $crypto;;
         2) cmd_edit $crypto;;
+        3) cmd_run $crypto;;
+        4) cmd_stop $crypto;;
+        5) cmd_update $crypto;;
         *) run $crypto
     esac  
 }
