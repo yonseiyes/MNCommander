@@ -172,7 +172,7 @@ function read_runcmd() {
     case $choice in
         0) two;;
         1) cmd_install $crypto;;
-        2) cmd_edit;;
+        2) cmd_edit $crypto;;
         *) cmd $crypto
     esac  
 }
