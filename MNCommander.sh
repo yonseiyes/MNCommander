@@ -98,7 +98,8 @@ function cmd_update() {
 function cmd_edit() {
   crypto=$1
   source ./${crypto}_qtbuild/${crypto}.sh
-  config=(${crypto}_conf)
+  
+  config=$( ${crypto}_conf )
   > $config
 
   yellow " Enter rpcuser"
