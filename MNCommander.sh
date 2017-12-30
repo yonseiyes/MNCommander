@@ -100,7 +100,7 @@ function cmd_update() {
 function cmd_edit() {
   crypto=$1
   source ./${crypto}_qtbuild/${crypto}.sh
-  > ${${crypto}_CONF}
+  > ${crypto}_conf
 
   echo "Enter rpcuser"
   read -p "rpcuser : " rpcuser
@@ -129,18 +129,18 @@ function cmd_edit() {
   echo "Enter externalip"
   read -p "externalip : " externalip
 
-  echo "rpcuser=$rpcuser" >> ${${crypto}_CONF}
-  sed -i "$ a rpcpassword=$rpcpassword" ${${crypto}_CONF}
-  sed -i "$ a rpcallowip=$rpcallowip" ${${crypto}_CONF}
-  sed -i "$ a daemon=$daemon" ${${crypto}_CONF}
-  sed -i "$ a server=$server" ${${crypto}_CONF}
-  sed -i "$ a listen=$listen" ${${crypto}_CONF}
-  sed -i "$ a masternode=$masternode" ${${crypto}_CONF}
-  sed -i "$ a masternodeprivkey=$masternodeprivkey" ${${crypto}_CONF}
-  sed -i "$ a externalip=$externalip" ${${crypto}_CONF}
+  echo "rpcuser=$rpcuser" >> ${crypto}_conf
+  sed -i "$ a rpcpassword=$rpcpassword" ${crypto}_conf
+  sed -i "$ a rpcallowip=$rpcallowip" ${crypto}_conf
+  sed -i "$ a daemon=$daemon" ${crypto}_conf
+  sed -i "$ a server=$server" ${crypto}_conf
+  sed -i "$ a listen=$listen" ${crypto}_conf
+  sed -i "$ a masternode=$masternode" ${crypto}_conf
+  sed -i "$ a masternodeprivkey=$masternodeprivkey" ${crypto}_conf
+  sed -i "$ a externalip=$externalip" ${crypto}_conf
 
   echo "Check your Conf"
-  cat ${${crypto}_CONF}
+  cat ${crypto}_conf
 
   echo 
   read -p " Press [Enter] To Exit ..."
