@@ -5,7 +5,7 @@ declare -a installable=("BRO" "PIVX" "XMCC")
 
 
 function red {
-        echo -e "$(tput bold; tput setaf 1)$1$(tput sgr0)"
+  echo -e "$(tput bold; tput setaf 1)$1$(tput sgr0)"
 }
 
 function igreen {
@@ -97,6 +97,57 @@ function cmd_update() {
   run ${crypto}  
 }
 
+function cmd_edit() {
+  crypto=$1
+  source ./${crypto}_qtbuild/${crypto}.sh
+  > ${${crypto}_CONF}
+
+  echo "Enter rpcuser"
+  read -p "rpcuser : " rpcuser
+
+  echo "Enter rpcpassword"
+  read -p "rpcpassword : " rpcpassword
+
+  echo "Enter rpcallowip"
+  read -p "rpcallowip : " rpcallowip
+  
+  echo "Enter daemon"
+  read -p "daemon : " daemon
+
+  echo "Enter server"
+  read -p "server : " server
+
+  echo "Enter listen"
+  read -p "listen : " listen
+
+  echo "Enter masternode"
+  read -p "masternode : " masternode
+
+  echo "Enter masternodeprivkey"
+  read -p "masternodeprivkey : " masternodeprivkey
+
+  echo "Enter externalip"
+  read -p "externalip : " externalip
+
+  echo "rpcuser=$rpcuser" >> ${${crypto}_CONF}
+  sed -i "$ a rpcpassword=$rpcpassword" ${${crypto}_CONF}
+  sed -i "$ a rpcallowip=$rpcallowip" ${${crypto}_CONF}
+  sed -i "$ a daemon=$daemon" ${${crypto}_CONF}
+  sed -i "$ a server=$server" ${${crypto}_CONF}
+  sed -i "$ a listen=$listen" ${${crypto}_CONF}
+  sed -i "$ a masternode=$masternode" ${${crypto}_CONF}
+  sed -i "$ a masternodeprivkey=$masternodeprivkey" ${${crypto}_CONF}
+  sed -i "$ a externalip=$externalip" ${${crypto}_CONF}
+
+  echo "Check your Conf"
+  cat ${${crypto}_CONF}
+
+  echo 
+  read -p " Press [Enter] To Exit ..."
+
+  run ${crypto}
+}
+
 
 function show_runcmd() {
   crypto=${1^}
@@ -121,8 +172,8 @@ function read_runcmd() {
     case $choice in
         0) two;;
         1) cmd_install $crypto;;
-        *) echo -e "$(red "             Incorrect option!")" && sleep 1
-        cmd $crypto
+        2) cmd_edit;;
+        *) cmd $crypto
     esac  
 }
 
