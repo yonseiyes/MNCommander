@@ -38,7 +38,7 @@ cat << "EOF"
       | |   | |  | | \  / | \  / |  /  \  |  \| | |  | | |__  | |__) |    
       | |   | |  | | |\/| | |\/| | / /\ \ | . ` | |  | |  __| |  _  /     
       | |___| |__| | |  | | |  | |/ ____ \| |\  | |__| | |____| | \ \     
-       \_____\____/|_|  |_|_|  |_/_/    \_\_| \_|_____/|______|_|  \_\ 
+       \_____\____/|_|  |_|_|  |_/_/    \_\_| \_|_____/|______|_|  \_\    
 
                                                  @chubja glaxer95@gmail.com
 
@@ -62,6 +62,11 @@ function two() {
   asciiart
   show_selectable
   read_selectable
+}
+
+function three() {
+  git pull
+  menu
 }
 
 function run() {
@@ -98,8 +103,13 @@ function cmd_update() {
 function cmd_edit() {
   crypto=$1
   source ./${crypto}_qtbuild/${crypto}.sh
-  
+
   config=$( ${crypto}_conf )
+
+  if [ -d "$config" ]; then
+    touch $config
+  fi
+
   > $config
 
   yellow " Enter rpcuser"
@@ -149,7 +159,9 @@ function cmd_edit() {
   sed -i "$ a externalip=$externalip" $config
 
   echo
-  red " Check your Conf"
+  red "*** Check your Conf ***"
+  echo
+
   cat $config
 
   echo 
@@ -218,7 +230,7 @@ function install_components() {
   crypto=${1,,}
   gitaddr="https://github.com/MinseokOh/${crypto}_qtbuild.git"
   git clone $gitaddr
-  read -p " Press [Enter] To Exit : "
+  read -p " Press [Enter] To Exit ..."
 
   one
 }
@@ -260,6 +272,7 @@ function show_option() {
   echo
   echo "                        1) Install Components"
   echo "                        2) Select  Components"
+  echo "                        3) Update MNCommander"  
   echo "                        0) Exit"
   tput sgr0
 }
@@ -270,6 +283,7 @@ function read_option() {
     case $choice in
         1) one ;;
         2) two ;;
+        3) three ;;
         0) exit 0;;
         *) echo -e "$(red "             Incorrect option!")" && sleep 1
     esac
