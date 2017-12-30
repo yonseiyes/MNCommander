@@ -234,6 +234,10 @@ function read_runcmd() {
 
 function show_selectable() {
   tput bold; tput setaf 3
+  echo "                        ---------------------" 
+  echo "                              Installed" 
+  echo "                        ---------------------"
+  echo  
   for c in "${installable[@]}"
   do
     DIRECTORY=${c,,}_qtbuild
