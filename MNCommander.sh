@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #LocalVariable
-declare -a installable=("BRO" "PIVX")
+declare -a installable=("BRO" "PIVX" "XMCC")
 
 
 function red {
