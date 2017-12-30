@@ -26,5 +26,5 @@ bash MNCommander.sh
 |        |            |                                           |
 |        |            |                                           |
 
-If your crypto are not on the support list, please leave an issue
+If your crypto are not on the support list, please leave an [Issue](https://github.com/MinseokOh/MNCommander/issues)
 
