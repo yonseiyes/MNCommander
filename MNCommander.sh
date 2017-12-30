@@ -72,8 +72,6 @@ function run() {
 }
 
 
-
-
 function cmd_install() {
   crypto=$1
   source ./${crypto}_qtbuild/${crypto}.sh
@@ -100,47 +98,58 @@ function cmd_update() {
 function cmd_edit() {
   crypto=$1
   source ./${crypto}_qtbuild/${crypto}.sh
-  > ${crypto}_conf
+  config=(${crypto}_conf)
+  > $config
 
-  echo "Enter rpcuser"
-  read -p "rpcuser : " rpcuser
+  yellow " Enter rpcuser"
+  read -p " > rpcuser : " rpcuser
+  echo
 
-  echo "Enter rpcpassword"
-  read -p "rpcpassword : " rpcpassword
+  yellow " Enter rpcpassword"
+  read -p " > rpcpassword : " rpcpassword
+  echo
 
-  echo "Enter rpcallowip"
-  read -p "rpcallowip : " rpcallowip
-  
-  echo "Enter daemon"
-  read -p "daemon : " daemon
+  yellow " Enter rpcallowip"
+  read -p " > rpcallowip : " rpcallowip
+  echo  
 
-  echo "Enter server"
-  read -p "server : " server
+  yellow " Enter daemon"
+  read -p " > daemon : " daemon
+  echo
 
-  echo "Enter listen"
-  read -p "listen : " listen
+  yellow " Enter server"
+  read -p " > server : " server
+  echo
 
-  echo "Enter masternode"
-  read -p "masternode : " masternode
+  yellow " Enter listen"
+  read -p " > listen : " listen
+  echo
 
-  echo "Enter masternodeprivkey"
-  read -p "masternodeprivkey : " masternodeprivkey
+  yellow " Enter masternode"
+  read -p " > masternode : " masternode
+  echo
 
-  echo "Enter externalip"
-  read -p "externalip : " externalip
+  yellow " Enter masternodeprivkey"
+  read -p " > masternodeprivkey : " masternodeprivkey
+  echo
 
-  echo "rpcuser=$rpcuser" >> ${crypto}_conf
-  sed -i "$ a rpcpassword=$rpcpassword" ${crypto}_conf
-  sed -i "$ a rpcallowip=$rpcallowip" ${crypto}_conf
-  sed -i "$ a daemon=$daemon" ${crypto}_conf
-  sed -i "$ a server=$server" ${crypto}_conf
-  sed -i "$ a listen=$listen" ${crypto}_conf
-  sed -i "$ a masternode=$masternode" ${crypto}_conf
-  sed -i "$ a masternodeprivkey=$masternodeprivkey" ${crypto}_conf
-  sed -i "$ a externalip=$externalip" ${crypto}_conf
+  yellow " Enter externalip"
+  read -p " > externalip : " externalip
+  echo
 
-  echo "Check your Conf"
-  cat ${crypto}_conf
+  echo "rpcuser=$rpcuser" >> $config
+  sed -i "$ a rpcpassword=$rpcpassword" $config
+  sed -i "$ a rpcallowip=$rpcallowip" $config
+  sed -i "$ a daemon=$daemon" $config
+  sed -i "$ a server=$server" $config
+  sed -i "$ a listen=$listen" $config
+  sed -i "$ a masternode=$masternode" $config
+  sed -i "$ a masternodeprivkey=$masternodeprivkey" $config
+  sed -i "$ a externalip=$externalip" $config
+
+  echo
+  red " Check your Conf"
+  cat $config
 
   echo 
   read -p " Press [Enter] To Exit ..."
@@ -173,7 +182,7 @@ function read_runcmd() {
         0) two;;
         1) cmd_install $crypto;;
         2) cmd_edit $crypto;;
-        *) cmd $crypto
+        *) run $crypto
     esac  
 }
 
