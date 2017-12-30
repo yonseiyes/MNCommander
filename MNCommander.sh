@@ -78,6 +78,7 @@ function run() {
 
 
 function cmd_install() {
+  clear  
   crypto=$1
   source ./${crypto}_qtbuild/${crypto}.sh
   
@@ -89,6 +90,7 @@ function cmd_install() {
 }
 
 function cmd_update() {
+  clear  
   crypto=$1
 
   pushd ./${crypto}_qtbuild/
@@ -101,6 +103,7 @@ function cmd_update() {
 }
 
 function cmd_run() {
+  clear  
   crypto=$1
   source ./${crypto}_qtbuild/${crypto}.sh
   
@@ -112,6 +115,7 @@ function cmd_run() {
 }
 
 function cmd_stop() {
+  clear
   crypto=$1
   source ./${crypto}_qtbuild/${crypto}.sh
   
@@ -125,6 +129,7 @@ function cmd_stop() {
 
 
 function cmd_edit() {
+  clear
   crypto=$1
   source ./${crypto}_qtbuild/${crypto}.sh
 
