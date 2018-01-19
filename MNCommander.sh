@@ -135,9 +135,9 @@ function cmd_edit() {
 
   config=$( ${crypto}_conf )
 
- # if [ -d "$config" ]; then
+   if [ -d "$config" ]; then
     touch $config
- # fi
+   fi
 
   > $config
 
