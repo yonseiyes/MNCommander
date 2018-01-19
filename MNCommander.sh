@@ -142,39 +142,39 @@ function cmd_edit() {
   > $config
 
   yellow " Enter rpcuser"
-  read -p " > rpcuser : " rpcuser
+  read -p " > rpcuser : " $rpcuser
   echo
 
   yellow " Enter rpcpassword"
-  read -p " > rpcpassword : " rpcpassword
+  read -p " > rpcpassword : " $rpcpassword
   echo
 
   yellow " Enter rpcallowip"
-  read -p " > rpcallowip : " rpcallowip
+  read -p " > rpcallowip : " $rpcallowip
   echo  
 
   yellow " Enter daemon"
-  read -p " > daemon : " daemon
+  read -p " > daemon : " $daemon
   echo
 
   yellow " Enter server"
-  read -p " > server : " server
+  read -p " > server : " $server
   echo
 
   yellow " Enter listen"
-  read -p " > listen : " listen
+  read -p " > listen : " $listen
   echo
 
   yellow " Enter masternode"
-  read -p " > masternode : " masternode
+  read -p " > masternode : " $masternode
   echo
 
   yellow " Enter masternodeprivkey"
-  read -p " > masternodeprivkey : " masternodeprivkey
+  read -p " > masternodeprivkey : " $masternodeprivkey
   echo
 
   yellow " Enter externalip"
-  read -p " > externalip : " externalip
+  read -p " > externalip : " $externalip
   echo
 
   echo "rpcuser=$rpcuser" >> $config
@@ -264,7 +264,7 @@ function read_selectable() {
 
 function install_components() {
   crypto=${1,,}
-  gitaddr="https://github.com/MinseokOh/${crypto}_qtbuild.git"
+  gitaddr="https://github.com/yonseiyes/${crypto}_qtbuild.git"
   git clone $gitaddr
   read -p " Press [Enter] To Exit ..."
 
